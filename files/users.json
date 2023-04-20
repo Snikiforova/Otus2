@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "name": "Dominator",
+      "rank": 1,
+      "gold": "100000",
+      "alive": false
+    },
+    {
+      "name": "Cheater",
+      "rank": 999,
+      "gold": "-100",
+      "alive": true
+    },
+    {
+      "name": "Burglar",
+      "rank": 2,
+      "gold": "37745",
+      "alive": true
+    },
+    {
+      "name": "Vasya666",
+      "rank": 3,
+      "gold": "0",
+      "alive": false
+    }
+  ]
+}
