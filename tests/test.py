@@ -1,45 +1,50 @@
 import csv
 import json
-import requests
+
+from files import BOOKS_FILE_PATH
+
+books = BOOKS_FILE_PATH
+
+books_file = open('books.csv')
+users_file = open('users.json')
+result_file = open('result.json')
 
 
-with open('users.json') as users_file, open('books.csv') as books_file:
-
-    users = json.load(users_file)
-
+books = csv.DictReader(books_file)
+users = json.load(users_file)
 
 
+result_list = []
+
+
+for user in users:
+
+    user_dict = {
+        'name': user['name'],
+        'gender': user['gender'],
+        'address': user['address'],
+        'age': user['age'],
+        'books': []
+    }
+
+
+    for book in books_reader:
+
+        if book['author_id'] == user['id']:
+            user_dict['books'].append({
+                'title': book['title'],
+                'author': book['author'],
+                'pages': int(book['pages']),
+                'genre': book['genre']
+            })
+
+    result_list.append(user_dict)
+
+    books_file.seek(0)
+    books_reader = csv.DictReader(books_file)
+
+
+json.dump(result_list, result_file)
 
 
 
-
-
-    books = []
-    for book in csv.reader(books_file):
-        books.append({
-            'title': book[0],
-            'author': book[1],
-            'pages': int(book[2]),
-            'genre': book[3]
-        })
-
-
-    num_users = len(users)
-    num_books = len(books)
-    books_per_user = num_books // num_users
-    remaining_books = num_books % num_users
-
-    for i in range(num_users):
-        start = i * books_per_user
-        end = start + books_per_user
-        if i < remaining_books:
-            end += 1
-
-        users[i]['books'] = books[start:end]
-
-
-    result = users
-
-
-with open('result.json', 'w') as result_file:
-    json.dump(result, result_file)
