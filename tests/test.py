@@ -1,9 +1,17 @@
 import csv
 import json
-path = 'C:/Users/User/Desktop/example.txt'
+import requests
+
+
 with open('users.json') as users_file, open('books.csv') as books_file:
 
     users = json.load(users_file)
+
+
+
+
+
+
 
 
     books = []
