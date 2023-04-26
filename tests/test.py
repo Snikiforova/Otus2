@@ -1,7 +1,7 @@
 import csv
 import json
 
-from files import BOOKS_FILE_PATH
+from Otus2.files import BOOKS_FILE_PATH
 
 books = BOOKS_FILE_PATH
 
